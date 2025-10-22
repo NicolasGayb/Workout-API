@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 from sqlalchemy import Integer, String, Float, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from workout_api.contrib.models import BaseModel
@@ -14,10 +14,10 @@ class AtletaModel(BaseModel):
     peso: Mapped[float] = mapped_column(Float, nullable=False)
     altura: Mapped[float] = mapped_column(Float, nullable=False)
     genero: Mapped[str] = mapped_column(String(1), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now(UTC), nullable=False)
 
     categoria_id: Mapped[int] = mapped_column(ForeignKey("categorias.pk_id"))
-    categoria: Mapped["CategoriaModel"] = relationship(back_populates="atleta")
+    categoria: Mapped["CategoriaModel"] = relationship(back_populates="atleta", lazy='selectin')
 
     centro_treinamento_id: Mapped[int] = mapped_column(ForeignKey("centro_treinamento.pk_id"))
-    centro_treinamento: Mapped["CentroTreinamentoModel"] = relationship("CentroTreinamentoModel", back_populates="atleta")
+    centro_treinamento: Mapped["CentroTreinamentoModel"] = relationship("CentroTreinamentoModel", back_populates="atleta", lazy='selectin')
