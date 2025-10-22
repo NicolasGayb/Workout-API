@@ -1,8 +1,10 @@
-from sqlalchemy import Integer, String
+from datetime import datetime
+from sqlalchemy import Integer, String, Float, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from workout_api.contrib.models import BaseModel
 
-class Categoria(BaseModel):
+
+class CategoriaModel(BaseModel):
     __tablename__ = "categorias"
 
     pk_id: Mapped[int] = mapped_column(Integer, primary_key=True)

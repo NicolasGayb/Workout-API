@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: workout
+      POSTGRES_USER: workout
+      POSTGRES_PASSWORD: workout123
+    ports:
+      - "5432:5432"
