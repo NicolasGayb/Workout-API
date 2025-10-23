@@ -1,3 +1,4 @@
+from __future__ import annotations
 from pydantic import Field, PositiveFloat
 from typing import Annotated, Optional
 from workout_api.categorias.schemas import CategoriaIn
@@ -23,3 +24,5 @@ class AtletaOut(Atleta, OutMixIn):
 class AtletaUpdate(BaseSchema):
     nome: Annotated[Optional[str], Field(description="Nome do atleta", example="João Silva", max_length=50)] = None
     idade: Annotated[Optional[int], Field(description="Idade do atleta", example=25)] = None
+
+AtletaOut.model_rebuild()
